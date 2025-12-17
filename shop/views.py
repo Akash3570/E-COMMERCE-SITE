@@ -4,11 +4,11 @@ from django.http import HttpResponse
 def index(request): 
     return render(request, 'shop/index.html') 
 def aboutus(request):
-    context = {
-        "company_name": "My Awesome Cart",
-        "mission": "To make online shopping simple, reliable and fast."
-    }
-    return render(request, "shop/about.html", context)
+    # context = {
+    #     "company_name": "My Awesome Cart",
+    #     "mission": "To make online shopping simple, reliable and fast."
+    # }
+    return render(request, "shop/about.html")
 
 def contact(request):
     return HttpResponse("we are on contact")
