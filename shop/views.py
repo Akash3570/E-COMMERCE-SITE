@@ -3,13 +3,33 @@ from django.http import HttpResponse
 from .models import Products
 from math import ceil
 def index(request):
-    products = Products.objects.all()
+    all_categories = Products.objects.values('category').distinct()
 
-    slides = []
-    for i in range(0, len(products), 4):
-        slides.append(products[i:i+4])
+    all_products = []
 
-    return render(request, "shop/index.html", {"slides": slides})
+    for cat in all_categories:
+        products = Products.objects.filter(category=cat['category'])
+
+        slides = []
+        for i in range(0, len(products), 4):
+            slides.append(products[i:i+4])
+
+        all_products.append({
+            "category": cat['category'],
+            "slides": slides
+        })
+
+    return render(request, "shop/index.html", {
+        "all_products": all_products
+    })
+# def index(request):
+#     products = Products.objects.all()
+
+#     slides = []
+#     for i in range(0, len(products), 4):
+#         slides.append(products[i:i+4])
+
+#     return render(request, "shop/index.html", {"slides": slides})
 
 
 def aboutus(request):
