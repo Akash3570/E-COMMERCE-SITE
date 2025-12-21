@@ -11,7 +11,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 
   <!-- Page-specific CSS -->
-  {% block  css %}{% endblock %}
+  {% block  css %}
+  
+{% endblock %}
 </head>
 <body>
 
@@ -30,23 +32,14 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="AboutUs/">About Us</a>
       </li>
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
-          Dropdown
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link " href="Contact/">Contact Us</a>
+      </li>
+       </li>
+      <li class="nav-item">
+        <a class="nav-link " href="trackerignstatus">Tracker</a>
       </li>
     </ul>
 
@@ -55,6 +48,16 @@
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>
+  <button
+  id="idcart"
+  type="button"
+  class="btn btn-secondary mx-1 p-1.2"
+  data-toggle="popover"
+  data-placement="bottom"
+  data-content="Items added in cart">
+  Cart <span id="cart-count" class="badge badge-light">0</span>
+</button>
+
 </nav> 
 {% block body %}
 {% endblock %}
