@@ -36,12 +36,12 @@ def aboutus(request):
     return render(request, "shop/about.html")
 
 def contact(request):
-    return HttpResponse("we are on contact")
+    return render(request, "shop/contact.html")
 def tracker(request):
-    return HttpResponse("we are on tracker")
+    return render(request, "shop/tracker.html")
 def search(request):
-    return HttpResponse("we are on search")
+    return render(request, "shop/search.html")
 def productView(request):
-    return HttpResponse("we are on productView")
+   return render(request, "shop/prodview.html")
 def checkout(request):
-    return HttpResponse("we are on checkout")
+   return render(request, "shop/checkout.html")
