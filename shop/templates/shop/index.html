@@ -35,6 +35,8 @@
   background-color: rgba(0,0,0,0.6);
   border-radius: 50%;
 }
+
+
 </style>
 {% endblock %}
 
@@ -103,22 +105,69 @@
 {% endblock %}
 {% block js %}
 <script>
+console.log("JS Loaded");
+
+// load cart
 let cart = JSON.parse(localStorage.getItem("cart") || "{}");
 
+// navbar count
+function updateCartCount() {
+  let total = 0;
+  for (let k in cart) total += cart[k];
+  document.getElementById("cart-count").innerText = total;
+}
+
+// show count on load
+updateCartCount();
+
+// ADD ITEM (LEFT CLICK)
 document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("cart")) {
+  if (!e.target.classList.contains("cart")) return;
 
-    let id = e.target.id;
+  let id = e.target.id;
 
-    if (cart[id]) {
-      cart[id] += 1;
-    } else {
-      cart[id] = 1;
-    }
+  cart[id] = cart[id] ? cart[id] + 1 : 1;
+  localStorage.setItem("cart", JSON.stringify(cart));
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    console.log(cart);
-  }
+  e.target.innerText = "Add to Cart (" + cart[id] + ")";
+  updateCartCount();
+
+  console.log("ADD:", id, "QTY:", cart[id]);
+  console.log("CART:", cart);
 });
+
+// REMOVE ITEM (RIGHT CLICK)
+document.addEventListener("contextmenu", function (e) {
+  if (!e.target.classList.contains("cart")) return;
+
+  e.preventDefault();
+
+  let id = e.target.id;
+
+  if (!cart[id]) return;
+
+  cart[id] -= 1;
+
+  if (cart[id] <= 0) {
+    delete cart[id];
+    e.target.innerText = "Add to Cart";
+  } else {
+    e.target.innerText = "Add to Cart (" + cart[id] + ")";
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+
+  console.log("REMOVE:", id, "QTY:", cart[id] || 0);
+  console.log("CART:", cart);
+});
+$(document).ready(function () {
+  $('#idcart').popover({
+    trigger: 'click'
+  });
+});
+
+
 </script>
 {% endblock %}
+
