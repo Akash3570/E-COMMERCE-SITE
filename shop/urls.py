@@ -24,6 +24,6 @@ urlpatterns = [
     path('Contact/',views.contact, name="Contact "),
     path('trackerignstatus/', views.tracker, name="trackerignstatus"),
     path('search/',views.search, name="search"),
-    path('productView/',views.productView, name="productView"),
+    path('products/<int:myid>',views.productView, name="productView"),
     path('checkout/',views.checkout, name="checkout")
 ]
