@@ -22,19 +22,8 @@ def index(request):
     return render(request, "shop/index.html", {
         "all_products": all_products
     })
-# def index(request):
-#     products = Products.objects.all()
-
-#     slides = []
-#     for i in range(0, len(products), 4):
-#         slides.append(products[i:i+4])
-
-#     return render(request, "shop/index.html", {"slides": slides})
-
-
 def aboutus(request):
     return render(request, "shop/about.html")
-
 def contact(request):
     return render(request, "shop/contact.html")
 def tracker(request):
