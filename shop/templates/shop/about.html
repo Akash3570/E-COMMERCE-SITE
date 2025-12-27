@@ -3,17 +3,61 @@
 {% block title %}About Us{% endblock %}
 
 {% block css %}
-<style> .container { max-width: 800px; margin: auto; }
-  h2 { margin-top: 20px; margin-bottom: 20px; }
-  p { font-size: 16px; line-height: 1.6; margin-bottom: 15px; }
+<style>
+.about-section {
+  padding: 40px 0;
+}
+
+.about-section h2 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.about-section p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.7;
+}
+
+.about-box {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 8px;
+}
 </style>
 {% endblock %}
 
 {% block body %}
-<div class="container my-3">
-  <h2>About Us</h2> 
-  <p>Welcome to My Awesome Cart! We are dedicated to providing you with the best online shopping experience. Our mission is to offer a wide range of products at competitive prices, along with exceptional customer service.</p>
-  <p>At My Awesome Cart, we believe in quality, affordability, and convenience. Whether you're looking for the latest gadgets, fashion trends, or everyday essentials, we've got you covered.</p>
-  <p>Thank you for choosing My Awesome Cart. We look forward to serving you!</p>
-</div>  
+<div class="container about-section">
+
+  <h2 class="text-center">About My Awesome Cart</h2>
+
+  <div class="about-box mt-4">
+    <p>
+      <strong>My Awesome Cart</strong> is an online shopping platform designed to
+      provide customers with a smooth, fast, and reliable shopping experience.
+      We offer a wide range of products including electronics, fashion, footwear,
+      and daily essentials — all in one place.
+    </p>
+
+    <p>
+      Our goal is to make online shopping simple and convenient by offering
+      high-quality products, clear product information, and an easy-to-use
+      interface. We focus on customer satisfaction and continuously improve our
+      platform based on user feedback.
+    </p>
+
+    <p>
+      With features like quick product view, easy cart management, and secure
+      checkout, My Awesome Cart aims to deliver a seamless e-commerce experience
+      for everyone.
+    </p>
+
+    <p>
+      Thank you for choosing <strong>My Awesome Cart</strong>. We are committed
+      to serving you better every day.
+    </p>
+  </div>
+
+</div>
 {% endblock %}
