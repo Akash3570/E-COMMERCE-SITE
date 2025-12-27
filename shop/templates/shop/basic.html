@@ -28,18 +28,17 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="AboutUs/">About Us</a>
+        <a class="nav-link" href="{% url 'shop_index' %}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="Contact/">Contact Us</a>
+        <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'Contact' %}">Contact Us</a>
       </li>
        </li>
       <li class="nav-item">
-        <a class="nav-link " href="trackerignstatus">Tracker</a>
+        <a class="nav-link " href="{% url 'trackerignstatus' %}">Tracker</a>
       </li>
     </ul>
 
@@ -69,6 +68,72 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
-{% block js %}{% endblock %}
+{% block js %}
+<script>
+console.log("JS Loaded");
+
+// load cart
+let cart = JSON.parse(localStorage.getItem("cart") || "{}");
+
+// navbar count
+function updateCartCount() {
+  let total = 0;
+  for (let k in cart) total += cart[k];
+  document.getElementById("cart-count").innerText = total;
+}
+
+// show count on load
+updateCartCount();
+
+// ADD ITEM (LEFT CLICK)
+document.addEventListener("click", function (e) {
+  if (!e.target.classList.contains("cart")) return;
+
+  let id = e.target.id;
+
+  cart[id] = cart[id] ? cart[id] + 1 : 1;
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  e.target.innerText = "Add to Cart (" + cart[id] + ")";
+  updateCartCount();
+
+  console.log("ADD:", id, "QTY:", cart[id]);
+  console.log("CART:", cart);
+});
+
+// REMOVE ITEM (RIGHT CLICK)
+document.addEventListener("contextmenu", function (e) {
+  if (!e.target.classList.contains("cart")) return;
+
+  e.preventDefault();
+
+  let id = e.target.id;
+
+  if (!cart[id]) return;
+
+  cart[id] -= 1;
+
+  if (cart[id] <= 0) {
+    delete cart[id];
+    e.target.innerText = "Add to Cart";
+  } else {
+    e.target.innerText = "Add to Cart (" + cart[id] + ")";
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+
+  console.log("REMOVE:", id, "QTY:", cart[id] || 0);
+  console.log("CART:", cart);
+});
+$(document).ready(function () {
+  $('#idcart').popover({
+    trigger: 'click'
+  });
+});
+
+
+</script>
+{% endblock %}
 </body>
 </html>
