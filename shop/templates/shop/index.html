@@ -35,6 +35,31 @@
   background-color: rgba(0,0,0,0.6);
   border-radius: 50%;
 }
+.carousel-control-prev,
+.carousel-control-next {
+  width: 50px;
+}
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;        
+}
+
+.card-footer .btn {
+  height: 38px;
+  line-height: 38px;        
+  white-space: nowrap;
+  display: flex;
+  align-items: center;        
+  justify-content: center;        
+}
+
+.cart {
+  width: 180px;             /
+}
+
+
 
 
 </style>
@@ -74,9 +99,15 @@
             <div class="card-footer bg-white border-0">
               <button
                 id="pr{{ p.id }}"
-                class="btn btn-primary btn-sm w-100 cart">
+                class="btn btn-primary cart">
                 Add to Cart
               </button>
+              <a href="products/{{p.id}}">
+              <button
+                id="qv{{ p.id }}"
+                class="btn btn-primary">
+                Quick View
+              </button></a>
             </div>
 
           </div>
@@ -153,6 +184,7 @@ document.addEventListener("contextmenu", function (e) {
     e.target.innerText = "Add to Cart";
   } else {
     e.target.innerText = "Add to Cart (" + cart[id] + ")";
+
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
