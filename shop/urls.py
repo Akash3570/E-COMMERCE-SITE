@@ -21,7 +21,7 @@ from . import views
 urlpatterns = [
     path('',views.index, name="shop_index"),
     path('AboutUs/',views.aboutus , name="aboutus"),
-    path('Contact/',views.contact, name="Contact"),
+    path('Contact/',views.contact, name="contact"),
     path('trackerignstatus/', views.tracker, name="trackerignstatus"),
     path('search/',views.search, name="search"),
     path('products/<int:myid>',views.productView, name="productView"),
